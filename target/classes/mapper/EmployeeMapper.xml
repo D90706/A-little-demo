@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="example.mapper.EmployeeMapper">
+
+<!-- 存放mcv层中定义接口的实现方法 -->
+
+<!-- id对应了mcv层中的方法名，resultType(数据返回的类型)对应的entity中的实体类 -->
+    <select id= "selectAll" resultType="example.entity.Employee">
+        select * from employee
+        <where>
+            <if test="name!= null">name like concat('%', #{name}, '%')</if>
+            order by id ASC
+        </where>
+    </select>
+
+    <select id="selectById" resultType="example.entity.Employee">
+        select * from employee where id = #{id}
+    </select>
+
+    <!-- java中变量名一般为驼峰命名,sql中变量名取得是下划线_,mybatis会自动将驼峰命名的变量转换为下划线命名的变量 -->
+    <!-- 注意两者使用区别 -->
+    <insert id="insert" parameterType="example.entity.Employee">
+        insert into employee(name,sex,age,description,dept_id)
+        values(#{name},#{sex},#{age},#{description},#{deptId})
+    </insert>
+
+    <update id="updateById" parameterType="example.entity.Employee">
+        update employee 
+        set name = #{name}, sex = #{sex}, age = #{age}, description = #{description}, dept_id = #{deptId}
+        where id = #{id}
+    </update>
+
+    <delete id= "deleteById" parameterType="integer">
+        delete from employee where id = #{id}
+    </delete>
+</mapper>
