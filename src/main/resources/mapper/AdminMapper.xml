@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="example.mapper.AdminMapper">
+
+    <!-- 插入管理员 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"> INSERT INTO admin (username,
+        password, name, role) VALUES (#{username}, #{password}, #{name}, #{role}) </insert>
+
+    <!-- 更新管理员信息 -->
+    <update id="updateById"> UPDATE admin SET username = #{username}, password = #{password}, name =
+        #{name}, role = #{role} WHERE id = #{id} </update>
+
+    <!-- 删除管理员 -->
+    <delete id="deleteById"> DELETE FROM admin WHERE id = #{id} </delete>
+
+    <!-- 批量删除管理员 -->
+    <delete id="deleteBatch"> DELETE FROM admin WHERE id IN <foreach item="id" index="index"
+            collection="ids" open="(" separator="," close=")"> #{id} </foreach>
+    </delete>
+
+    <!-- 查询所有管理员 -->
+    <select id="selectAll" resultType="example.entity.Admin"> SELECT * FROM admin 
+        <where>
+            <if test="name!= null">name like concat('%', #{name}, '%')</if>
+            order by id ASC
+        </where>
+    </select>
+
+    <!-- 根据账号查询管理员 -->
+    <select id="selectByUsername" resultType="example.entity.Admin"> SELECT * FROM admin WHERE
+        username = #{username} </select>
+
+    <!-- 根据id查询管理员 -->
+    <select id="selectById" resultType="example.entity.Admin"> SELECT * FROM admin WHERE id = #{id} </select>
+
+</mapper>

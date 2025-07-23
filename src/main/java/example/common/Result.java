@@ -6,7 +6,7 @@ public class Result {
     private String msg;
     private Object data;
 
-    public static Result sucess(){
+    public static Result success(){
         Result result  = new Result();
         result.setCode("200");
         result.setMsg("请求成功");
@@ -14,7 +14,7 @@ public class Result {
     }
 
     public static Result success(Object data){
-        Result result = sucess();
+        Result result = success();
         result.setData(data);
         return result;
     }
