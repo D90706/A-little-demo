@@ -1,5 +1,5 @@
 
-// const apiKey = 'sk-edbaf7c34c894548bf3d0744db5b5b49'; // 环境变量名需要根据实际情况定义
+// const apiKey = ''; // 环境变量名需要根据实际情况定义
 
 // test.js
 import axios from "axios";
