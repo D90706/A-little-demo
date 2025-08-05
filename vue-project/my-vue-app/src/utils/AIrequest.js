@@ -11,7 +11,7 @@ const AIrequest = axios.create({
 });
 
 // 从环境变量中获取API密钥
-const apiKey = 'sk-edbaf7c34c894548bf3d0744db5b5b49'; // 环境变量名需要根据实际情况定义
+const apiKey = ''; // 环境变量名需要根据实际情况定义
 
 // request 拦截器
 AIrequest.interceptors.request.use(
