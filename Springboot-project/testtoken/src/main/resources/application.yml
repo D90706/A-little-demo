@@ -1,0 +1,23 @@
+# 监听端口
+server:
+  port: 8080
+
+# 数据库配置
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&&characterEncoding=UTF-8&allowMultiQueries=true
+    password: Scp90706
+    username: root
+
+# mybatis配置
+# 配置mybatis实体和xml映射
+mybatis:
+  ## 映射xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 配置日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    
